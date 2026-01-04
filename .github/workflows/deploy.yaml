@@ -40,7 +40,7 @@ jobs:
             --template-file cloudformation_dynamic/bucket.yaml \
             --stack-name ansiblelab-bucket \
             --capabilities CAPABILITY_NAMED_IAM \
-            --parameter-overrides BucketName=ansiblelab-bucket-20250104
+            --parameter-overrides BucketName=ansiblelab-bucket-20260104
 
       # - name: Validate CloudFormation template
       #   run: |
