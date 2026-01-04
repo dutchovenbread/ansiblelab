@@ -69,10 +69,10 @@ jobs:
             --stack-name ${{ env.STACK_NAME }} \
             --capabilities CAPABILITY_IAM \
             --no-fail-on-empty-changeset
-      # - name: Validate Instance CloudFormation template
-      #   run: |
-      #     aws cloudformation validate-template \
-      #       --template-body file://cloudformation_dynamic/instance.yaml
+      - name: Validate Instance CloudFormation template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://cloudformation_dynamic/instance.yaml
       # - name: Deploy CloudFormation stack for instance
       #   run: |
       #     aws cloudformation deploy \
