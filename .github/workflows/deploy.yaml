@@ -62,17 +62,17 @@ jobs:
       #     aws s3 cp application/wsgi.py s3://ansiblelab-bucket-20251016/wsgi.py
           
       #     aws s3 cp application/requirements.txt s3://ansiblelab-bucket-20251016/requirements.txt
-      # - name: Deploy CloudFormation stack for application
-      #   run: |
-      #     aws cloudformation deploy \
-      #       --template-file cloudformation_dynamic/application.yaml \
-      #       --stack-name ${{ env.STACK_NAME }} \
-      #       --capabilities CAPABILITY_IAM \
-      #       --no-fail-on-empty-changeset
-      # - name: Validate Instance CloudFormation template
-      #   run: |
-      #     aws cloudformation validate-template \
-      #       --template-body file://cloudformation_dynamic/instance.yaml
+      - name: Deploy CloudFormation stack for application
+        run: |
+          aws cloudformation deploy \
+            --template-file cloudformation_dynamic/application.yaml \
+            --stack-name ${{ env.STACK_NAME }} \
+            --capabilities CAPABILITY_IAM \
+            --no-fail-on-empty-changeset
+      - name: Validate Instance CloudFormation template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://cloudformation_dynamic/instance.yaml
       # - name: Deploy CloudFormation stack for instance
       #   run: |
       #     aws cloudformation deploy \
