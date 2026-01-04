@@ -1,6 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Superlists application resources, excluding instance'
 
+Paramaters:
+  HostedZoneDomain:
+    Type: String
+    Description: Domain name for Route53 Hosted Zone (e.g., example.com)
+    Default: ansiblelab.mkhresume.com
+
 Resources:
   VPC:
     Type: AWS::EC2::VPC
