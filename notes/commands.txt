@@ -1,0 +1,3 @@
+I created a virtual environment with Ansible installed.
+Next I need to set up a target server.
+That will be in AWS.
