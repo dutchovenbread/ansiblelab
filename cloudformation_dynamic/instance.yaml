@@ -18,6 +18,10 @@ Parameters:
     Type: String
     Description: EC2 Key Pair name (optional, for SSH access)
     Default: mkh_key
+  SSHPublicKey:
+    Type: String
+    Description: Public SSH key for EC2 instance access
+    Default: blah
 
 Conditions:
   HasKeyName: !Not [!Equals [!Ref KeyName, '']]
@@ -45,13 +49,13 @@ Resources:
           # Update system
           yum update -y
 
-          useradd -m -s /bin/bash ansible
-          usermod -a -G sudo ansible
-          echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/ansible
-          su - ansible
+          sudo useradd -m -s /bin/bash ansible
+          sudo usermod -a -G sudo ansible
+          sudo echo 'ansible ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/ansible
+          sudo su - ansible
           mkdir -p /home/ansible/.ssh
           # Add your public key here
-          echo "ssh-ed25519 xyz/ someone@gmail.com" >> /home/ansible/.ssh/authorized_keys
+          echo "{Ref:sshpublickey}" >> /home/ansible/.ssh/authorized_keys
           
 
       Tags:
