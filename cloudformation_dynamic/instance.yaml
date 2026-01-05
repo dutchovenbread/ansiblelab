@@ -93,6 +93,9 @@ Outputs:
 
   PublicDNSName:
     Description: Public DNS name of the EC2 instance
-    Value: !GetAtt Route53Record.Name
+    Value:
+      Fn::Sub:
+        - 'app.${Domain}'
+        - Domain: !ImportValue HostedZoneDomain
     Export:
       Name: AnsiblelabAppPublicDNSName
