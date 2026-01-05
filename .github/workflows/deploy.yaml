@@ -79,8 +79,8 @@ jobs:
             --template-file cloudformation_dynamic/instance.yaml \
             --stack-name ${{ env.STACK_NAME }}-instance \
             --capabilities CAPABILITY_IAM \
-            --no-fail-on-empty-changeset
-
+            --no-fail-on-empty-changeset \
+            --parameter-overrides SSHPublicKey="${{ secrets.SSH_PUBLIC_KEY }}"
       # - name: Get stack outputs
       #   id: stack-outputs
       #   run: |
