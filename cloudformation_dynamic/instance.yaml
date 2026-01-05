@@ -55,7 +55,7 @@ Resources:
           sudo su - ansible
           mkdir -p /home/ansible/.ssh
           # Add your public key here
-          echo "{Ref:sshpublickey}" >> /home/ansible/.ssh/authorized_keys
+          echo "{Ref:SSHPublicKey}" >> /home/ansible/.ssh/authorized_keys
           
 
       Tags:
