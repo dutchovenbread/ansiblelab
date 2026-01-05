@@ -56,10 +56,10 @@ Resources:
         Fn::Sub:
           - 'app.${Domain}'
           - Domain: !ImportValue HostedZoneDomain
-      Type: A
+      Type: CNAME
       TTL: '300'
       ResourceRecords:
-        - !GetAtt EC2Instance.PublicIp
+        - !GetAtt EC2Instance.PublicDnsName
 Outputs:
   InstanceId:
     Description: EC2 Instance ID

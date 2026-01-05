@@ -42,10 +42,10 @@ jobs:
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides BucketName=ansiblelab-bucket-20260104
 
-      # - name: Validate CloudFormation template
-      #   run: |
-      #     aws cloudformation validate-template \
-      #       --template-body file://cloudformation_dynamic/application.yaml
+      - name: Validate CloudFormation template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://cloudformation_dynamic/application.yaml
       # - name: Copy Files to S3 Bucket
       #   run: |
       #     aws s3 cp application/static_files/dummy.html s3://ansiblelab-bucket-20251016/dummy.html
@@ -73,13 +73,13 @@ jobs:
         run: |
           aws cloudformation validate-template \
             --template-body file://cloudformation_dynamic/instance.yaml
-      # - name: Deploy CloudFormation stack for instance
-      #   run: |
-      #     aws cloudformation deploy \
-      #       --template-file cloudformation_dynamic/instance.yaml \
-      #       --stack-name ${{ env.STACK_NAME }}-instance \
-      #       --capabilities CAPABILITY_IAM \
-      #       --no-fail-on-empty-changeset
+      - name: Deploy CloudFormation stack for instance
+        run: |
+          aws cloudformation deploy \
+            --template-file cloudformation_dynamic/instance.yaml \
+            --stack-name ${{ env.STACK_NAME }}-instance \
+            --capabilities CAPABILITY_IAM \
+            --no-fail-on-empty-changeset
 
       # - name: Get stack outputs
       #   id: stack-outputs
