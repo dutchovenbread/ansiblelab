@@ -45,6 +45,15 @@ Resources:
           # Update system
           yum update -y
 
+          useradd -m -s /bin/bash ansible
+          usermod -a -G sudo ansible
+          echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/ansible
+          su - ansible
+          mkdir -p /home/ansible/.ssh
+          # Add your public key here
+          echo "ssh-ed25519 xyz/ someone@gmail.com" >> /home/ansible/.ssh/authorized_keys
+          
+
       Tags:
         - Key: Name
           Value: AnsiblelabAppInstance
