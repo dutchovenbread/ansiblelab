@@ -52,7 +52,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !ImportValue HostedZoneId
-      Name: !Sub 'app.${Fn::ImportValue HostedZoneDomain}'
+      Name: !Sub 'app.${Fn::ImportValue:HostedZoneDomain}'
       Type: A
       TTL: '300'
       ResourceRecords:
