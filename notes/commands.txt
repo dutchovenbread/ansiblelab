@@ -97,12 +97,29 @@ vagrant up
 
 Destroy the server:
 vagrant destroy -f
+vagrant destroy <vmname> -f
 
 Ping the server:
-vagrant testserver -m ping
+ansible testserver -m ping
 
 Runa an (uptime) command on the server (module "command" is implied)
-vagrant testserver -a uptime
+ansible testserver -a uptime
+
+SSH details:
+vagrant ssh-config
 
 ssh to the server:
 vagrant ssh
+ssh vagrant@127.0.0.1 -p 2222 -i .vagrant/machines/default/virtualbox/private_key
+(port or identity might be different)
+
+Show all of the vagrant VMs on the machine:
+vagrant global-status
+
+Show all of the vagrant VMs on the machine, with a cache update:
+vagrant global-status --prune
+
+List VirtualBox VMs so I can delete one:
+vboxmanage list vms
+vboxmanage unregistervm "<vboxname>" --delete-all
+
