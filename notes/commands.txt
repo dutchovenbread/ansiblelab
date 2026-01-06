@@ -90,3 +90,19 @@ sudo apt install virtualbox
 
 I had to disable KVM. I put a script from Medium (https://medium.com/@romgalicia/virtualbox-cant-operate-in-vmx-root-mode-here-s-how-to-toggle-kvm-to-fix-it-46ab156b6850)
 
+
+
+Starting the server:
+vagrant up
+
+Destroy the server:
+vagrant destroy -f
+
+Ping the server:
+vagrant testserver -m ping
+
+Runa an (uptime) command on the server (module "command" is implied)
+vagrant testserver -a uptime
+
+ssh to the server:
+vagrant ssh
