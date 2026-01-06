@@ -57,3 +57,36 @@ DNS.3 = 10.0.1.171
 
 
 ---
+
+
+Vagrant setup
+
+The following commands will require sudo, so maybe do a simple sudo call before this to cache the password/authentication.
+
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install vagrant
+
+I also need VirtualBox.
+
+# 1. Update package lists
+sudo apt update
+
+# 2. Install necessary dependencies
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+# 3. Add the official VirtualBox GPG key
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+
+# 4. Add the VirtualBox repository (adjust 'focal' if on a different Ubuntu version)
+echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian focal contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+echo "deb [arch=intel64] http://download.virtualbox.org/virtualbox/debian focal contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+
+# 5. Update again to include the new repo
+sudo apt update
+
+# 6. Install VirtualBox
+sudo apt install virtualbox
+
+I had to disable KVM. I put a script from Medium (https://medium.com/@romgalicia/virtualbox-cant-operate-in-vmx-root-mode-here-s-how-to-toggle-kvm-to-fix-it-46ab156b6850)
+
