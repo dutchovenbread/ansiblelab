@@ -24,3 +24,36 @@ ns-152.awsdns-19.com.
 SOA record
 ns-1595.awsdns-07.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
 
+Create self-signed key
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.pem -config san.cnf -sha256
+
+Contents of san.cnf
+---
+[ req ]
+default_bits = 2048
+encrypt_key = no
+default_md = sha256
+utf8 = yes
+string_mask = utf8only
+prompt = no
+distinguished_name = req_distinguished_name
+req_extensions = req_ext
+
+[ req_distinguished_name ]
+countryName = US
+stateOrProvinceName = Virginia
+localityName = Arlington
+organizationName = MKHResume
+organizationalUnitName = IT
+commonName = app.ansiblelab.mkhresume.com ; The primary CN
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = ip-10-0-1-171.us-east-2.compute.internal
+DNS.2 = 3.139.87.149
+DNS.3 = 10.0.1.171
+
+
+---
