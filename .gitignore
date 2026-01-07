@@ -2,3 +2,4 @@ venv
 *.crt
 *.key
 .vagrant
+dev.db
