@@ -26,6 +26,7 @@ ns-1595.awsdns-07.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
 
 Create self-signed key
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.pem -config san.cnf -sha256
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.pem -config san.cnf -sha256
 
 Contents of san.cnf
 ---
