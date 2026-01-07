@@ -1,0 +1,22 @@
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+
+  config.vm.define "vagrant1" do |vagrant1|
+    vagrant1.vm.box = "ubuntu/focal64"
+    vagrant1.vm.network "forwarded_port", guest: 80, host: 8080, id: "http"
+    vagrant1.vm.network "forwarded_port", guest: 443, host: 8443, id: "https"
+  end
+  
+  config.vm.define "vagrant2" do |vagrant2|
+    vagrant2.vm.box = "ubuntu/focal64"
+    vagrant2.vm.network "forwarded_port", guest: 80, host: 8081, id: "http"
+    vagrant2.vm.network "forwarded_port", guest: 443, host: 8444, id: "https"
+  end
+
+  config.vm.define "vagrant3" do |vagrant3|
+    vagrant3.vm.box = "ubuntu/focal64"
+    vagrant3.vm.network "forwarded_port", guest: 80, host: 8082, id: "http"
+    vagrant3.vm.network "forwarded_port", guest: 443, host: 8445, id: "https"
+  end
+end

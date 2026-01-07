@@ -128,3 +128,7 @@ Chapter 4 notes:
 I'm using my EC2 instance and my chapter3vagrant server to start
 That got me as far as page 104.
 Now I need to shut down that Vagrant setup and do another one.
+
+The multiple vagrant boxes built with one access key store the key centrally:
+
+ssh vagrant@127.0.0.1 -p 2201 -i ~/.vagrant.d/insecure_private_key
