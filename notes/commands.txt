@@ -124,3 +124,7 @@ List VirtualBox VMs so I can delete one:
 vboxmanage list vms
 vboxmanage unregistervm "<vboxname>" --delete-all
 
+Chapter 4 notes:
+I'm using my EC2 instance and my chapter3vagrant server to start
+That got me as far as page 104.
+Now I need to shut down that Vagrant setup and do another one.
