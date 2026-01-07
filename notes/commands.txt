@@ -132,3 +132,10 @@ Now I need to shut down that Vagrant setup and do another one.
 The multiple vagrant boxes built with one access key store the key centrally:
 
 ssh vagrant@127.0.0.1 -p 2201 -i ~/.vagrant.d/insecure_private_key
+
+
+Chapter 6: Mezzanine
+Mezzanine is a pain.
+
+The dependencies are not well defined, so I had to pip install setuptools.
+Also, it wants an earlier version of Python. Trying to deal with that by installing the "zombie-imp" package.
