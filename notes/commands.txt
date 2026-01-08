@@ -150,4 +150,6 @@ So I will do the following tasks:
 [x] put the vagrant server in ansible inventory
 [x] set up ansible configuration
 [x] run basic ansible commands against the server
-[ ] run one task in the playbook against the server
+[x] run one task in the playbook against the server
+
+Good. All that works.
