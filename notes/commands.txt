@@ -153,3 +153,6 @@ So I will do the following tasks:
 [x] run one task in the playbook against the server
 
 Good. All that works.
+
+I got to the point where it is trying to clone the GitHub repository.
+That has some explanation in the book, which I will execute now.
