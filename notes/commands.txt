@@ -161,3 +161,5 @@ I had to create a requirements.txt file for the Python packages, and that now wo
 
 A few steps later, I need to define a password for the database user.
 Probably because I don't have the secrets file.
+
+I created the file, and that worked.
