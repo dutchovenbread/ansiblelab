@@ -84,16 +84,16 @@
         virtualenv: "{{ venv_path }}"
         virtualenv_command: /usr/bin/python3 -m venv
 
-    # - name: Copy requirements.txt to home directory
-    #   copy:
-    #     src: requirements.txt
-    #     dest: "{{ reqs_path }}"
-    #     mode: 0644
+    - name: Copy requirements.txt to home directory
+      copy:
+        src: requirements.txt
+        dest: "{{ reqs_path }}"
+        mode: 0644
 
-  #   - name: Install packages listed in requirements.txt
-  #     pip:
-  #       virtualenv: "{{ venv_path }}"
-  #       requirements: "{{ reqs_path }}"
+    - name: Install packages listed in requirements.txt
+      pip:
+        virtualenv: "{{ venv_path }}"
+        requirements: "{{ reqs_path }}"
 
   #   - name: Create project locale
   #     become: true
