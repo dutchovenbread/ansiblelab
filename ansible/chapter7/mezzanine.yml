@@ -143,37 +143,37 @@
         state: absent
       notify: Restart nginx
 
-  #   - name: Set the nginx config file
-  #     become: true
-  #     template:
-  #       src: templates/nginx.conf.j2
-  #       dest: /etc/nginx/sites-available/mezzanine.conf
-  #       mode: 0640
-  #     notify: Restart nginx
+    - name: Set the nginx config file
+      become: true
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/mezzanine.conf
+        mode: 0640
+      notify: Restart nginx
 
-  #   - name: Enable the nginx config file
-  #     become: true
-  #     file:
-  #       src: /etc/nginx/sites-available/mezzanine.conf
-  #       dest: /etc/nginx/sites-enabled/mezzanine.conf
-  #       state: link
-  #       mode: 0777
-  #     notify: Restart nginx
+    - name: Enable the nginx config file
+      become: true
+      file:
+        src: /etc/nginx/sites-available/mezzanine.conf
+        dest: /etc/nginx/sites-enabled/mezzanine.conf
+        state: link
+        mode: 0777
+      notify: Restart nginx
 
-  #   - name: Set the supervisor config file
-  #     become: true
-  #     template:
-  #       src: templates/supervisor.conf.j2
-  #       dest: /etc/supervisor/conf.d/mezzanine.conf
-  #       mode: 0640
-  #     notify: Restart supervisor
+    - name: Set the supervisor config file
+      become: true
+      template:
+        src: templates/supervisor.conf.j2
+        dest: /etc/supervisor/conf.d/mezzanine.conf
+        mode: 0640
+      notify: Restart supervisor
 
-  #   - name: Install poll twitter cron job
-  #     cron:
-  #       name: "poll twitter"
-  #       minute: "*/5"
-  #       user: "{{ user }}"
-  #       job: "{{ manage }} poll_twitter"
+    - name: Install poll twitter cron job
+      cron:
+        name: "poll twitter"
+        minute: "*/5"
+        user: "{{ user }}"
+        job: "{{ manage }} poll_twitter"
 
   #   - name: Set the gunicorn config file
   #     template:

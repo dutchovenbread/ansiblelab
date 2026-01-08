@@ -163,3 +163,9 @@ A few steps later, I need to define a password for the database user.
 Probably because I don't have the secrets file.
 
 I created the file, and that worked.
+
+I don't have the template for the nginx configuration file. I'll add that.
+Added. Success.
+
+Running into an error that the supervisor (gunicorn) can't restart. Adding one more step made that work.
+
