@@ -139,3 +139,15 @@ Mezzanine is a pain.
 
 The dependencies are not well defined, so I had to pip install setuptools.
 Also, it wants an earlier version of Python. Trying to deal with that by installing the "zombie-imp" package.
+
+Chapter 7:
+This is a gigantic mess. I'm taking the playbook from the book github repo, and I'll comment things out-and-in until I have learned what I need to.
+
+The playbook goes against hosts "web".
+
+So I will do the following tasks:
+[x] set up vagrant server
+[x] put the vagrant server in ansible inventory
+[x] set up ansible configuration
+[x] run basic ansible commands against the server
+[ ] run one task in the playbook against the server
