@@ -156,3 +156,8 @@ Good. All that works.
 
 I got to the point where it is trying to clone the GitHub repository.
 That has some explanation in the book, which I will execute now.
+
+I had to create a requirements.txt file for the Python packages, and that now works.
+
+A few steps later, I need to define a password for the database user.
+Probably because I don't have the secrets file.
