@@ -3,3 +3,4 @@ venv
 *.key
 .vagrant
 dev.db
+scratch

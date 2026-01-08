@@ -64,15 +64,15 @@
         state: directory
         mode: 0755
 
-    # ### run this when you run into permission problems:
-    # # $  ssh-keygen -R 192.168.56.10
-    # - name: Check out the repository on the host
-    #   git:
-    #     repo: "{{ repo_url }}"
-    #     dest: "{{ proj_path }}"
-    #     version: master
-    #     accept_hostkey: true
-    #     update: false
+    ### run this when you run into permission problems:
+    # $  ssh-keygen -R 192.168.56.10
+    - name: Check out the repository on the host
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ proj_path }}"
+        version: master
+        accept_hostkey: true
+        update: false
 
     - name: Create python3 virtualenv
       pip:
