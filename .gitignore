@@ -3,3 +3,5 @@ venv
 *.key
 .vagrant
 dev.db
+scratch
+secrets.yml

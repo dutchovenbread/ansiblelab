@@ -13,10 +13,10 @@
     settings_path: "{{ proj_path }}/{{ proj_name }}"
     reqs_path: '~/requirements.txt'
     manage: "{{ python }} {{ proj_path }}/manage.py"
-    live_hostname: 192.168.56.10.nip.io
+    live_hostname: localhost
     domains:
-      - 192.168.56.10.nip.io
-      - www.192.168.56.10.nip.io
+      - 127.0.0.1
+      - localhost
     repo_url: git@github.com:ansiblebook/mezzanine_example.git
     locale: en_US.UTF-8
     # Variables below don't appear in Mezannine's fabfile.py
@@ -50,8 +50,9 @@
           - python3-dev
           - python3-pip
           - python3-venv
-          - python3-psycopg2
+          # - python3-psycopg2
           - supervisor
+          # - libapache2-mod-wsgi-py3
 
     - name: Create project path
       file:

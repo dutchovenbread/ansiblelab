@@ -150,4 +150,27 @@ So I will do the following tasks:
 [x] put the vagrant server in ansible inventory
 [x] set up ansible configuration
 [x] run basic ansible commands against the server
-[ ] run one task in the playbook against the server
+[x] run one task in the playbook against the server
+
+Good. All that works.
+
+I got to the point where it is trying to clone the GitHub repository.
+That has some explanation in the book, which I will execute now.
+
+I had to create a requirements.txt file for the Python packages, and that now works.
+
+A few steps later, I need to define a password for the database user.
+Probably because I don't have the secrets file.
+
+I created the file, and that worked.
+
+I don't have the template for the nginx configuration file. I'll add that.
+Added. Success.
+
+Running into an error that the supervisor (gunicorn) can't restart. Adding one more step made that work.
+
+I worked all the way to the site setup, which is automated by a script written by the book author.
+I think that a database table doesn't exist.
+
+There is a problem with the second-to-last play in the playbook. That is the custom script the suthors created.
+
