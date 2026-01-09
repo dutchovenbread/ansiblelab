@@ -15,6 +15,7 @@
     manage: "{{ python }} {{ proj_path }}/manage.py"
     live_hostname: localhost
     domains:
+      - 127.0.0.1
       - localhost
     repo_url: git@github.com:ansiblebook/mezzanine_example.git
     locale: en_US.UTF-8
@@ -49,8 +50,9 @@
           - python3-dev
           - python3-pip
           - python3-venv
-          - python3-psycopg2
+          # - python3-psycopg2
           - supervisor
+          # - libapache2-mod-wsgi-py3
 
     - name: Create project path
       file:
@@ -175,53 +177,53 @@
         user: "{{ user }}"
         job: "{{ manage }} poll_twitter"
 
-  #   - name: Set the gunicorn config file
-  #     template:
-  #       src: templates/gunicorn.conf.py.j2
-  #       dest: "{{ proj_path }}/gunicorn.conf.py"
-  #       mode: 0750
+    - name: Set the gunicorn config file
+      template:
+        src: templates/gunicorn.conf.py.j2
+        dest: "{{ proj_path }}/gunicorn.conf.py"
+        mode: 0750
 
-  #   - name: Generate the settings file
-  #     template:
-  #       src: templates/local_settings.py.j2
-  #       dest: "{{ settings_path }}/local_settings.py"
-  #       mode: 0750
+    - name: Generate the settings file
+      template:
+        src: templates/local_settings.py.j2
+        dest: "{{ settings_path }}/local_settings.py"
+        mode: 0750
 
-  #   - name: Initialize the database
-  #     django_manage:
-  #       command: createdb --noinput --nodata
-  #       app_path: "{{ proj_path }}"
-  #       virtualenv: "{{ venv_path }}"
-  #     failed_when: false
-  #     tags:
-  #       - createdb
+    - name: Initialize the database
+      django_manage:
+        command: createdb --noinput --nodata
+        app_path: "{{ proj_path }}"
+        virtualenv: "{{ venv_path }}"
+      failed_when: false
+      tags:
+        - createdb
 
-  #   - name: Apply migrations to create the database, collect static content
-  #     django_manage:
-  #       command: "{{ item }}"
-  #       app_path: "{{ proj_path }}"
-  #       virtualenv: "{{ venv_path }}"
-  #     failed_when: false
-  #     with_items:
-  #       - migrate
-  #       - collectstatic
+    - name: Apply migrations to create the database, collect static content
+      django_manage:
+        command: "{{ item }}"
+        app_path: "{{ proj_path }}"
+        virtualenv: "{{ venv_path }}"
+      failed_when: false
+      with_items:
+        - migrate
+        - collectstatic
 
-  #   - name: Set the site id
-  #     script: scripts/setsite.py
-  #     environment:
-  #       PATH: "{{ venv_path }}/bin"
-  #       PROJECT_DIR: "{{ proj_path }}"
-  #       PROJECT_APP: "{{ proj_app }}"
-  #       DJANGO_SETTINGS_MODULE: "{{ proj_app }}.settings"
-  #       WEBSITE_DOMAIN: "{{ live_hostname }}"
+    - name: Set the site id
+      script: scripts/setsite.py
+      environment:
+        PATH: "{{ venv_path }}/bin"
+        PROJECT_DIR: "{{ proj_path }}"
+        PROJECT_APP: "{{ proj_app }}"
+        DJANGO_SETTINGS_MODULE: "{{ proj_app }}.settings"
+        WEBSITE_DOMAIN: "{{ live_hostname }}"
 
-  #   - name: Set the admin password
-  #     script: scripts/setadmin.py
-  #     environment:
-  #       PATH: "{{ venv_path }}/bin"
-  #       PROJECT_DIR: "{{ proj_path }}"
-  #       PROJECT_APP: "{{ proj_app }}"
-  #       ADMIN_PASSWORD: "{{ admin_pass }}"
+    - name: Set the admin password
+      script: scripts/setadmin.py
+      environment:
+        PATH: "{{ venv_path }}/bin"
+        PROJECT_DIR: "{{ proj_path }}"
+        PROJECT_APP: "{{ proj_app }}"
+        ADMIN_PASSWORD: "{{ admin_pass }}"
 
   handlers:
 

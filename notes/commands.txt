@@ -169,3 +169,8 @@ Added. Success.
 
 Running into an error that the supervisor (gunicorn) can't restart. Adding one more step made that work.
 
+I worked all the way to the site setup, which is automated by a script written by the book author.
+I think that a database table doesn't exist.
+
+There is a problem with the second-to-last play in the playbook. That is the custom script the suthors created.
+
