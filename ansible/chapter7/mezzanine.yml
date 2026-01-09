@@ -207,7 +207,10 @@
       with_items:
         - migrate
         - collectstatic
-
+    - debug: var=venv_path
+    - debug: var=proj_path
+    - debug: var=proj_app
+    - debug: var=live_hostname
     - name: Set the site id
       script: scripts/setsite.py
       environment:
