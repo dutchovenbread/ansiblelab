@@ -174,3 +174,15 @@ I think that a database table doesn't exist.
 
 There is a problem with the second-to-last play in the playbook. That is the custom script the suthors created.
 
+export PATH="/home/vagrant/.virtualenvs/mezzanine_example/bin"
+export PROJECT_DIR="/home/vagrant/mezzanine/mezzanine_example"
+export PROJECT_APP="mezzanine_example"
+export ADMIN_PASSWORD=2ZGN0PxuXSwoLFkqfepofEgXT0tkms5n
+export DJANGO_SETTINGS_MODULE="mezzanine_example.settings"
+export WEBSITE_DOMAIN=localhost
+cd .virtualenvs/mezzanine_example/bin
+. ./activate
+
+python /vagrant/scripts
+
+The error shows that the table expected to exist in the database does not exist.
