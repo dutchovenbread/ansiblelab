@@ -1,3 +1,4 @@
+django==1.11
 Mezzanine==4.3.1
 zombie-imp
 psycopg2-binary
