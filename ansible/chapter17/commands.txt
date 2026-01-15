@@ -1,0 +1,1 @@
+ansible-inventory --list | jq -r .aws_ec2
