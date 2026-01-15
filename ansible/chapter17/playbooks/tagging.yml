@@ -1,0 +1,16 @@
+---
+- name: Add tags to existing instances
+  hosts: localhost
+  vars:
+    web_test:
+      - i-07bb20fa7e6b50b1f
+  tasks:
+    - name: Tag test webservers
+      amazon.aws.ec2_tag:
+        resource: "{{ item }}"
+        region: us-east-2
+      args:
+        tags:
+          type: web
+          env: test
+      loop: "{{ web_test }}"
