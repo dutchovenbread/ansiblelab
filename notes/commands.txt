@@ -186,3 +186,27 @@ cd .virtualenvs/mezzanine_example/bin
 python /vagrant/scripts
 
 The error shows that the table expected to exist in the database does not exist.
+
+Checking on postgres
+
+sudo systemctl status postgresql
+sudo systemctl start postgresql
+sudo systemctl status 'postgresql*'
+sudo -u postgres psql -l
+sudo -u postgres psql postgres (\q to quit)
+
+sudo -u postgres psql postgres
+
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
+  AND table_type = 'BASE TABLE';
+
+No tables.
+
+Got an error when trying to run:
+
+python manage.py migrate
+
+The AI says that the error is that the version of Django is not compatible with the app, but I'm using Django 1.11.29, which should be compatible.
+
