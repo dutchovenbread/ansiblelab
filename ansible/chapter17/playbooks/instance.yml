@@ -1,0 +1,75 @@
+---
+- name: Configure and start EC2 instance
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    instance_type: t4g.nano
+    key_name: mkh_key
+    aws_region: us-east-2
+    security_group: sg-096399c516806b001
+    subnet_id: subnet-03b00ead67cd51be6
+
+
+  tasks:
+  
+    - name: Gather information on Ubuntu AMIs published by Canonical
+      amazon.aws.ec2_ami_info:
+        region: us-east-2
+        owners: 099720109477
+        filters:
+          name: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-*"
+          architecture: "arm64"
+          root-device-type: "ebs"
+          virtualization-type: "hvm" 
+          state: "available"
+      register: ec2_ami_info
+    
+
+    - name: Sort the list of AMIs by date for the latest image
+      set_fact:
+        latest_ami: |
+          {{ ec2_ami_info.images | sort(attribute='creation_date') | last }}
+
+    - name: Configure and start EC2 instance
+      amazon.aws.ec2_instance:
+        region: "{{ aws_region }}"
+        name: 'web1'
+        image_id: "{{ latest_ami.image_id }}"
+        instance_type: "{{ instance_type }}"
+        key_name: "{{ key_name }}"
+        security_group: "{{ security_group }}"
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ subnet_id }}"
+        tags:
+          type: web
+          env: test
+        volumes:
+          - device_name: /dev/sda1
+            ebs:
+              volume_size: 16
+              delete_on_termination: true
+        wait: true
+      register: ec2
+
+    - name: Wait for EC2 instance to be ready
+      wait_for:
+        host: "{{ item.public_ip_address}}"
+        groupname:
+          - web
+          - test
+      loop: "{{ ec2.instances }}"
+
+    # - name: Configure Web Server
+    #   hosts: web:&test
+    #   become: true
+    #   gather_facts: true
+    #   remote_user: ubuntu
+
+    #   roles:
+    #     - webserver
+
+
+
+...
